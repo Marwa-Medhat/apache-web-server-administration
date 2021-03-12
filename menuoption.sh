@@ -13,44 +13,54 @@ function displayMenu {
 				echo '1';
 				#install apache web server
 				installapache
+				displayMenu
              ;;
           "Remove Apache")
 			echo '2';
 			#remove apache web server"
 			removeapache
+			displayMenu
 			;;
  	"list all virtual hosts")
         #list all virtual hosts
 			echo '3'
-			listallvirtualhosts	
+			listallvirtualhosts
+			displayMenu	
 	     	;;
  	"add virtual host")
  		echo '4';
             #add virtual host
 			addvirtualhost
+			displayMenu
       	;;
      	"delete virtual host")
          echo '5';
 			#delete virtual host
 			deletevirtualhost
+			displayMenu
              ;;
+
          "disable virtual host")
              echo '6';
 		 disablevirtualhost
+		 displayMenu
              ;;
        "enable virtual host")
              echo '7';
 		 #enable virtual host 
 		 enablevirtualhost
+		 displayMenu
               ;;
         "enableAuthVirtualHost")
            echo '8';
 		 enableauthvirtualhost
+		 displayMenu
 		#enable  auth virtual host
              ;;
  			"disable auth virtual host")
  			 echo '9';
 		 disableauthvirtualhost
+		 displayMenu
 		#disable  auth virtual host
              ;;
          "Quit")
