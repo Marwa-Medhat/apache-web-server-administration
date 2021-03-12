@@ -88,7 +88,6 @@ function addvirtualhost
     systemctl reload apache2
     sudo systemctl restart apache2
     echo "127.0.0.1	${websitename}"
-    sudo chmod 777 /etc/hosts
     echo "127.0.0.1	${websitename}"  >> /etc/hosts
     sudo systemctl restart apache2
     #echo "Open up your web browser and point it to http://Websitename";
@@ -110,7 +109,6 @@ function deletevirtualhost
     fi
     NUM_LINE=$(expr ${NUM_LINE} + 1)
     done <"/etc/hosts"
-    sudo chmod 777 /etc/hosts
     sudo sed -i "${REQ_LINE}d" /etc/hosts
     sudo rm /etc/apache2/sites-available/${deleteVirtualHost}.conf
     sudo rm -Rf /var/www/${deleteVirtualHost}
