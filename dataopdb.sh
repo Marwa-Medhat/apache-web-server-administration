@@ -176,7 +176,7 @@ function  enableauthvirtualhost
 }
 function  disableauthvirtualhost
 {
-    # replace allowOverride All with AllowOverride None and remove .htaccess
+    # replace allowOverride All with AllowOverride None 
     read -p "Enter name of virtualhost you want to make remove auth from it : " disauthVirtualHost
     NUM_LINE=1
     while read -r line;do
@@ -187,6 +187,6 @@ function  disableauthvirtualhost
     done <"/etc/apache2/sites-available/${disauthVirtualHost}.conf"
     sudo sed -i "${REQ_LINE}d" /etc/apache2/sites-available/${disauthVirtualHost}.conf
     sudo sed -i "${REQ_LINE} i  AllowOverride None" /etc/apache2/sites-available/${disauthVirtualHost}.conf
-    rm  /var/www/html/${disauthVirtualHost}/public_html/.htaccess
+ 
 }
 
