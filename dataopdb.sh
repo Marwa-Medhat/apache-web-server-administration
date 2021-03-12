@@ -62,7 +62,6 @@ function addvirtualhost
         read -p "Enter username: " username
         sudo chown -R $USER:${username} /var/www/html/${websitename}/public_html
         sudo touch /var/www/html/${websitename}/public_html/index.html
-        sudo chmod 777 /var/www/html/${websitename}/public_html/index.html
         echo "<html>
         <head>
         <title>www.${websitename}</title>
@@ -73,7 +72,6 @@ function addvirtualhost
         </html>" >> /var/www/html/${websitename}/public_html/index.html
         cat /var/www/html/${websitename}/public_html/index.html;
         sudo touch /etc/apache2/sites-available/${websitename}.conf
-        sudo chmod 777 /etc/apache2/sites-available/${websitename}.conf
       echo "
     <VirtualHost *:80>
         ServerAdmin webmaster@${websitename}
@@ -106,7 +104,6 @@ function deletevirtualhost
     #expr to make arthimatic operation and increase 
     read -p "Enter name of virtualhost you want to delete : " deleteVirtualHost
     NUM_LINE=1
-    sudo chmod 777 /etc/hosts
     while read -r line;do
     if [ "$line" == "127.0.0.1	${deleteVirtualHost}" ]; then
     REQ_LINE=${NUM_LINE}
@@ -168,7 +165,6 @@ function  enableauthvirtualhost
     ###########################################################3
     #.htaccess for every website to make authentication
     sudo touch /var/www/html/${authVirtualHost}/public_html/.htaccess
-    sudo chmod 777 /var/www/html/${authVirtualHost}/public_html/.htaccess
     echo "
      AuthType Basic
      AuthName 'Restricted Content'
