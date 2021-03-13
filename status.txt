@@ -1,17 +1,20 @@
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
-     Active: inactive (dead) since Sat 2021-03-13 15:35:00 EET; 6s ago
+     Active: active (running) since Sat 2021-03-13 23:54:32 EET; 2min 7s ago
        Docs: https://httpd.apache.org/docs/2.4/
-    Process: 11557 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
-    Process: 19823 ExecStop=/usr/sbin/apachectl stop (code=exited, status=0/SUCCESS)
-   Main PID: 11561 (code=exited, status=0/SUCCESS)
+    Process: 9596 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 9600 (apache2)
+      Tasks: 6 (limit: 19034)
+     Memory: 14.1M
+     CGroup: /system.slice/apache2.service
+             ├─9600 /usr/sbin/apache2 -k start
+             ├─9601 /usr/sbin/apache2 -k start
+             ├─9602 /usr/sbin/apache2 -k start
+             ├─9603 /usr/sbin/apache2 -k start
+             ├─9604 /usr/sbin/apache2 -k start
+             └─9605 /usr/sbin/apache2 -k start
 
-مار 13 14:21:03 origenal systemd[1]: Starting The Apache HTTP Server...
-مار 13 14:21:04 origenal apachectl[11560]: [Sat Mar 13 14:21:04.026961 2021] [alias:warn] [pid 11560] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
-مار 13 14:21:04 origenal apachectl[11560]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
-مار 13 14:21:04 origenal systemd[1]: Started The Apache HTTP Server.
-مار 13 15:35:00 origenal systemd[1]: Stopping The Apache HTTP Server...
-مار 13 15:35:00 origenal apachectl[19828]: [Sat Mar 13 15:35:00.071897 2021] [alias:warn] [pid 19828] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
-مار 13 15:35:00 origenal apachectl[19828]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
-مار 13 15:35:00 origenal systemd[1]: apache2.service: Succeeded.
-مار 13 15:35:00 origenal systemd[1]: Stopped The Apache HTTP Server.
+مار 13 23:54:32 origenal systemd[1]: Starting The Apache HTTP Server...
+مار 13 23:54:32 origenal apachectl[9599]: [Sat Mar 13 23:54:32.800997 2021] [alias:warn] [pid 9599] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
+مار 13 23:54:32 origenal apachectl[9599]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.14. Set the 'ServerName' directive globally to suppress this message
+مار 13 23:54:32 origenal systemd[1]: Started The Apache HTTP Server.

@@ -3,16 +3,35 @@ source dataopdb.sh
 source checkerdb.sh
 
 function displayMenu {
+    echo "1-to install apache web server"
+	echo "2-to remove apache web server"
+	echo "3- list all virtual hosts"
+	echo "4-add virtual host "
+	echo "5-delete virtual host "
+	echo "6-disable virtual host "
+	echo "7-enable virtual host "
+	echo "8-enable  auth virtual host" 
+	echo "9-disable auth virtual host "
+    echo "10-start apache"		
+	echo "11-stop Apache"
+	echo "12- Quit"
+	# runMenu
 
- choice='Please enter your choice: '
- options=("Install Apache"  "Remove Apache" "list all virtual hosts" "add virtual host" "delete virtual host" "disable virtual host" "enable virtual host" "enableAuthVirtualHost" "disable auth virtual host" "start apache" "stop Apache" "Quit")	 
- select opt in "${options[@]}"
- do
-     case $opt in
-         "Install Apache")
-				echo '1';
-				#install apache web server
-				checkApache
+}	
+
+
+
+function runMenu {
+	local CH
+	echo "Enter your choice"
+	local FLAG=1
+	while [ ${FLAG} -eq 1 ]
+	do
+	read CH
+	case ${CH} in
+		"1")
+			echo '1'
+		checkApache
 	        ApacheEXIST=${?} 
             if [ ${ApacheEXIST} == 0] ##not installed so install it 
             then
@@ -20,40 +39,44 @@ function displayMenu {
 				displayMenu
 			else
 				echo "already installed"
-				displayMenu									
-            fi	
-             ;;
-          "Remove Apache")
-			echo '2';
+				displayMenu	
+		    fi	
+			
+			;;
+		"2")
+			echo '2'
 			#remove apache web server"
 			# listallvirtualhosts
 			checkApache
-	        ApacheEXIST=${?} ##already installed
-            if [ ${ApacheEXIST} == 1 ]
-            then
-			removeapache
-			displayMenu
-			else
-				echo "already removed"
-				displayMenu									
+			ApacheEXIST=${?} ##already installed
+		    if [ ${ApacheEXIST} == 1 ]
+		    then
+				removeapache
+				displayMenu
+				else
+					echo "already removed"
+		  		  displayMenu									
             fi
 			;;
- 	"list all virtual hosts")
-        #list all virtual hosts
+		"3")
+			 #list all virtual hosts
 			echo '3'
 			# listallvirtualhosts
 			checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
-			listallvirtualhosts
-			displayMenu									
+			listallvirtualhosts	
+			echo "-----------------------------"										
 			else
-				displayMenu									
-            fi
-	     	;;
- 	"add virtual host")
- 		echo '4'
+			echo "Apache not exist you need to install it first"											
+		    fi
+
+					 
+			;;
+		
+		"4")
+		echo '4'
         #  check_if_virtualhost_exist_or_not
 		#  check_if_virtualhost_exist_or_not 
 		#   check_if_virtualhost_exist_or_not
@@ -71,69 +94,54 @@ function displayMenu {
 						if [ ${EXISTLOCALHOST} == 0 ]
 						then
 							addvirtualhost
-							displayMenu									
 						else
-						echo "Apache not exist you need to install it first"
-				        displayMenu									
+						 echo "Already exist"	
+				
                         fi
 			else
-				displayMenu									
+				echo "Apache not exist you need to install it first"										
             fi
 
-      	;;
-     	"delete virtual host")
-         echo '5';
+			;;
+		"5")
+			echo '5'
 			#delete virtual host
 			checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
 			deletevirtualhost
-			displayMenu									
 			else
 				echo "Apache not exist you need to install it first"
-				displayMenu									
             fi
-             ;;
-         "disable virtual host")
-             echo '6';
+		;;
+		"6")
+		 echo '6'
 			checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
-			disablevirtualhost
-		    displayMenu									
+                  disablevirtualhost
 			else
 					echo "Apache not exist you need to install it first"
-					displayMenu									
 			fi
-             ;;
-       "enable virtual host")
-             echo '7';
+		
+		;;
+		"7")
+		echo '7'
 		 #enable virtual host 
 		    checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
 		    enablevirtualhost
-			displayMenu									
 		    else
 				echo "Apache not exist you need to install it first"
-				displayMenu									
 			fi
-              ;;
-        "enableAuthVirtualHost")
-           echo '8';
-		   #   checkApache
-	        # ApacheEXIST=${?} ##already installed
-            # if [ ${ApacheEXIST} == 1 ]
-            # then
-			# enableauthvirtualhost
-			# else
-			# 			displayMenu									
-			# fi
-			###Check first if Apache exist or not 
-			### then check if make enbleauthantication to website before or not 
+		;;
+		"8")
+		           echo '8'
+		    
 		   checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
@@ -143,26 +151,16 @@ function displayMenu {
 						if [ ${EXISTAuthantication} == 1 ]  ##not authorized so make auth by call enable fn 
 						then
 							enableauthvirtualhost
-							displayMenu									
-						else
-						echo "Apache not exist you need to install it first"
-				        displayMenu									
+						
                         fi
 			else
-					displayMenu									
+				echo "Apache not exist you need to install it first"
+
 			fi
 		    #enable  auth virtual host
-             ;;
- 			"disable auth virtual host")
- 			 echo '9';
-			#   checkApache
-	        # ApacheEXIST=${?} ##already installed
-            # if [ ${ApacheEXIST} == 1 ]
-            # then
-			# disableauthvirtualhost
-			# else
-			# 			displayMenu									
-			# fi
+		;;
+		"9")
+		 echo '9'
 			checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
@@ -171,53 +169,53 @@ function displayMenu {
 						EXISTAuthantication=${?}
 						if [ ${EXISTAuthantication} == 1 ]  ##authorized so can make Nonauth by call disableauth fn 
 						then
-						disableauthvirtualhost
-						displayMenu									
-						else
-						echo "Apache not exist you need to install it first"
-				        displayMenu									
+						disableauthvirtualhost			
                         fi
 			else
-					   displayMenu									
+					echo "Apache not exist you need to install it first"
 			fi
-
 		#disable  auth virtual host
-             ;;
-			 "start apache")
+		;;
+		
+		"10")
+			   checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+			startApache
+			else
+				echo "Apache not exist you need to install it first"
+			fi
+				
+		;;
+		"11")
+		echo '11'
 			   checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
 
-			startApache
-			displayMenu
-			else
-				echo "Apache not exist you need to install it first"
-				displayMenu									
-			fi
-				# startApache
-				# displayMenu
-			 ;;
-			 "stop Apache")
-			 	   checkApache
-	        ApacheEXIST=${?} ##already installed
-            if [ ${ApacheEXIST} == 1 ]
-            then
-
 			stopApache
-			displayMenu
 			else
 				echo "Apache not exist you need to install it first"
-				displayMenu									
 			fi
 				# stopApache
 				# displayMenu
-			 ;;
-         "Quit")
-             break
-             ;;
-         *) echo "invalid option $REPLY";;
-     esac
- done
- }
-
+		;;
+		
+		"12")
+		echo '12'
+		##exit
+			FLAG=0
+		;;
+		
+		*)
+			echo "Invalid choice, please try again"
+			;;
+	esac
+	if [ ${FLAG} -eq 1 ]   
+	then
+		displayMenu
+	fi
+	done
+}

@@ -3,6 +3,9 @@ source dataopdb.sh
 source checkerdb.sh
 source menuoption.sh
 
-displayMenu
 
+
+
+displayMenu
+runMenu
 exit 0
