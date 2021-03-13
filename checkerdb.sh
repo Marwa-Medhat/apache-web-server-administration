@@ -41,3 +41,74 @@ function check_if_virtualhost_exist_or_not
 		# displayMenu
 }
 
+### at first Require all granted
+### in autharized So AllowOver All
+#### in  remove autharized so  AllowOver None 
+function check_if_authorized_or_not
+{
+
+   read -p "Enter name of virtualhost you want to make auth for it : " authVirtualHost
+    Flag_authorized=1
+    while read -r line;do
+    if [ "$line" == "Require all granted" ] || [ "$line" == "AllowOverride None" ]; then ###need to make authantication
+          echo "not authorized"  
+           Flag_authorized=1    ##call enableauth 
+           break
+    else                               
+             echo "authorized"    ####authorized exist
+              Flag_authorized=0
+    fi
+    done <"/etc/apache2/sites-available/${authVirtualHost}.conf"
+
+    return $[Flag_authorized]
+   
+}
+
+function check_if_enable_authorized_or_not
+{
+
+   read -p "Enter name of virtualhost you want to make disautharized for it : " authVirtualHost
+    Flag_authorized=1
+    while read -r line;do
+    if [ "$line" == "AllowOverride All" ]; then ####we make fn enbleAuth so we can make fn NonAuth
+          echo "authorized"  
+           Flag_authorized=1
+           break
+    else
+             echo " not authorized"       
+              Flag_authorized=0
+    fi
+    done <"/etc/apache2/sites-available/${authVirtualHost}.conf"
+
+    return $[Flag_authorized]
+   
+}
+
+function check_if_directory_Exist_or_not
+{
+    read -p "Enter name of virtualhost (website): " websitename
+    flagAdd_virtualHost=0
+    if [ -d "/var/www/html/${websitename}" ]
+    then
+            echo "directory already Exist"
+                flagAdd_virtualHost=0
+    else
+              flagAdd_virtualHost=1 ##7y3ml call l fn al addvirtualhost
+    fi
+}
+
+function check_if_htaccess_already_exist
+{
+      read -p "Enter name of virtualhost you want to make auth for it : " authVirtualHost
+      if [ -f "/var/www/html/${authVirtualHost}/public_html/.htaccess" ]
+     then
+
+     fi
+     echo "file already Exist"
+
+}
+
+
+
+
+

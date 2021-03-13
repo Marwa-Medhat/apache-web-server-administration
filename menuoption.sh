@@ -12,15 +12,29 @@ function displayMenu {
          "Install Apache")
 				echo '1';
 				#install apache web server
-				
+				checkApache
+	        ApacheEXIST=${?} 
+            if [ ${ApacheEXIST} == 0] ##not installed so install it 
+            then
 				installapache
 				displayMenu
+			else
+				displayMenu									
+            fi	
              ;;
           "Remove Apache")
 			echo '2';
 			#remove apache web server"
+			# listallvirtualhosts
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
 			removeapache
 			displayMenu
+			else
+				displayMenu									
+            fi
 			;;
  	"list all virtual hosts")
         #list all virtual hosts
@@ -30,7 +44,8 @@ function displayMenu {
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
             then
-			listallvirtualhosts	
+			listallvirtualhosts
+			displayMenu									
 			else
 				displayMenu									
             fi
@@ -44,11 +59,20 @@ function displayMenu {
 			# addvirtualhost
 
 		#4 --> add -->checker exist or not-->lw msh mwgod --> call add --> lw  mwgod yktb exist y3rd Menu tani 
-			check_if_virtualhost_exist_or_not  
-            EXISTLOCALHOST=${?}
-			 if [ ${EXISTLOCALHOST} == 0 ]
-             then
-				addvirtualhost
+
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+						check_if_virtualhost_exist_or_not  
+						EXISTLOCALHOST=${?}
+						if [ ${EXISTLOCALHOST} == 0 ]
+						then
+							addvirtualhost
+							displayMenu									
+						else
+				        displayMenu									
+                        fi
 			else
 				displayMenu									
             fi
@@ -57,30 +81,97 @@ function displayMenu {
      	"delete virtual host")
          echo '5';
 			#delete virtual host
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
 			deletevirtualhost
-			displayMenu
+			displayMenu									
+			else
+				displayMenu									
+            fi
              ;;
          "disable virtual host")
              echo '6';
-		 disablevirtualhost
-		 displayMenu
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+			disablevirtualhost
+		    displayMenu									
+			else
+					displayMenu									
+			fi
              ;;
        "enable virtual host")
              echo '7';
 		 #enable virtual host 
-		 enablevirtualhost
-		 displayMenu
+		    checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+		    enablevirtualhost
+			displayMenu									
+		    else
+				displayMenu									
+			fi
               ;;
         "enableAuthVirtualHost")
            echo '8';
-		 enableauthvirtualhost
-		 displayMenu
-		#enable  auth virtual host
+		   #   checkApache
+	        # ApacheEXIST=${?} ##already installed
+            # if [ ${ApacheEXIST} == 1 ]
+            # then
+			# enableauthvirtualhost
+			# else
+			# 			displayMenu									
+			# fi
+			###Check first if Apache exist or not 
+		   checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+						check_if_authorized_or_not
+						EXISTAuthantication=${?}
+						if [ ${EXISTAuthantication} == 1 ]  ##not authorized so make auth by call enable fn 
+						then
+							enableauthvirtualhost
+							displayMenu									
+						else
+				        displayMenu									
+                        fi
+			else
+					displayMenu									
+			fi
+		    #enable  auth virtual host
              ;;
  			"disable auth virtual host")
  			 echo '9';
-		 disableauthvirtualhost
-		 displayMenu
+			#   checkApache
+	        # ApacheEXIST=${?} ##already installed
+            # if [ ${ApacheEXIST} == 1 ]
+            # then
+			# disableauthvirtualhost
+			# else
+			# 			displayMenu									
+			# fi
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+						check_if_enable_authorized_or_not
+						EXISTAuthantication=${?}
+						if [ ${EXISTAuthantication} == 1 ]  ##authorized so can make Nonauth by call disableauth fn 
+						then
+						disableauthvirtualhost
+						displayMenu									
+						else
+				        displayMenu									
+                        fi
+			else
+					   displayMenu									
+			fi
+
 		#disable  auth virtual host
              ;;
          "Quit")
