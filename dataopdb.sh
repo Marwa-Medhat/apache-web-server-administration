@@ -9,6 +9,9 @@
 	# "7-enable virtual host "
 	# "8-enable  auth virtual host" 
 	# "9-disable auth virtual host "
+	#"10-start apache"		
+	#"11-stop Apache"
+	#"12- Quit"
  #################################################33   
 function installapache
 {
