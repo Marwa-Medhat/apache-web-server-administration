@@ -19,6 +19,7 @@ function displayMenu {
 				installapache
 				displayMenu
 			else
+				echo "already installed"
 				displayMenu									
             fi	
              ;;
@@ -33,6 +34,7 @@ function displayMenu {
 			removeapache
 			displayMenu
 			else
+				echo "already removed"
 				displayMenu									
             fi
 			;;
@@ -71,6 +73,7 @@ function displayMenu {
 							addvirtualhost
 							displayMenu									
 						else
+						echo "Apache not exist you need to install it first"
 				        displayMenu									
                         fi
 			else
@@ -88,6 +91,7 @@ function displayMenu {
 			deletevirtualhost
 			displayMenu									
 			else
+				echo "Apache not exist you need to install it first"
 				displayMenu									
             fi
              ;;
@@ -100,6 +104,7 @@ function displayMenu {
 			disablevirtualhost
 		    displayMenu									
 			else
+					echo "Apache not exist you need to install it first"
 					displayMenu									
 			fi
              ;;
@@ -113,6 +118,7 @@ function displayMenu {
 		    enablevirtualhost
 			displayMenu									
 		    else
+				echo "Apache not exist you need to install it first"
 				displayMenu									
 			fi
               ;;
@@ -139,6 +145,7 @@ function displayMenu {
 							enableauthvirtualhost
 							displayMenu									
 						else
+						echo "Apache not exist you need to install it first"
 				        displayMenu									
                         fi
 			else
@@ -167,6 +174,7 @@ function displayMenu {
 						disableauthvirtualhost
 						displayMenu									
 						else
+						echo "Apache not exist you need to install it first"
 				        displayMenu									
                         fi
 			else
@@ -176,12 +184,34 @@ function displayMenu {
 		#disable  auth virtual host
              ;;
 			 "start apache")
-				startApache
-				displayMenu
+			   checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+
+			startApache
+			displayMenu
+			else
+				echo "Apache not exist you need to install it first"
+				displayMenu									
+			fi
+				# startApache
+				# displayMenu
 			 ;;
 			 "stop Apache")
-				stopApache
-				displayMenu
+			 	   checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+
+			stopApache
+			displayMenu
+			else
+				echo "Apache not exist you need to install it first"
+				displayMenu									
+			fi
+				# stopApache
+				# displayMenu
 			 ;;
          "Quit")
              break
