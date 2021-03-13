@@ -95,16 +95,22 @@ function check_if_directory_Exist_or_not
     else
               flagAdd_virtualHost=1 ##7y3ml call l fn al addvirtualhost
     fi
+       return $[flagAdd_virtualHost]
 }
 
-function check_if_htaccess_already_exist
+function check_if_passwd_already_exist
 {
       read -p "Enter name of virtualhost you want to make auth for it : " authVirtualHost
-      if [ -f "/var/www/html/${authVirtualHost}/public_html/.htaccess" ]
+      flagUserExistBefore=0
+      if [ -f "/var/www/html/${authVirtualHost}/public_html/.htpasswd" ]
      then
-
+            echo "there is user exist for website "
+	      flagUserExistBefore=1
+     else
+     	    flagUserExistBefore=0  
+	      
      fi
-     echo "file already Exist"
+      return $[flagUserExistBefore]
 
 }
 

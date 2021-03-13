@@ -5,7 +5,7 @@ source checkerdb.sh
 function displayMenu {
 
  choice='Please enter your choice: '
- options=("Install Apache"  "Remove Apache" "list all virtual hosts" "add virtual host" "delete virtual host" "disable virtual host" "enable virtual host" "enableAuthVirtualHost" "disable auth virtual host" "Quit")	 
+ options=("Install Apache"  "Remove Apache" "list all virtual hosts" "add virtual host" "delete virtual host" "disable virtual host" "enable virtual host" "enableAuthVirtualHost" "disable auth virtual host" "start apache" "stop Apache" "Quit")	 
  select opt in "${options[@]}"
  do
      case $opt in
@@ -127,6 +127,7 @@ function displayMenu {
 			# 			displayMenu									
 			# fi
 			###Check first if Apache exist or not 
+			### then check if make enbleauthantication to website before or not 
 		   checkApache
 	        ApacheEXIST=${?} ##already installed
             if [ ${ApacheEXIST} == 1 ]
@@ -174,6 +175,14 @@ function displayMenu {
 
 		#disable  auth virtual host
              ;;
+			 "start apache")
+				startApache
+				displayMenu
+			 ;;
+			 "stop Apache")
+				stopApache
+				displayMenu
+			 ;;
          "Quit")
              break
              ;;

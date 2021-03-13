@@ -17,7 +17,10 @@ There is Menu write number of operation you want
 	num 7 enable virtual host 
 	num 8 enable  auth virtual host 
 	num 9 disable auth virtual host 
-    num 10 Quit
+	num 10 start apache		
+	num 11 stop Apache
+	num 12 Quit
+				
 If You write any number not included from 1 to 10 will appear on screen  not valid    
 
 To run project you need to 

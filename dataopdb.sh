@@ -198,3 +198,15 @@ function  disableauthvirtualhost
     # rm  /var/www/html/${disauthVirtualHost}/public_html/.htaccess
 }
 
+function startApache
+{
+ sudo systemctl start apache2.service   
+ echo "Apache started"
+}
+
+function stopApache
+{
+ sudo systemctl stop apache2.service   
+ echo "Apache stopped"
+}
+
