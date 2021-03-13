@@ -9,7 +9,7 @@
 	# "7-enable virtual host "
 	# "8-enable  auth virtual host" 
 	# "9-disable auth virtual host "
-	#"10-start apache"		
+    #"10-start apache"		
 	#"11-stop Apache"
 	#"12- Quit"
  #################################################33   
@@ -67,7 +67,7 @@ function addvirtualhost
         read -p "Enter username: " username
         sudo chown -R $USER:${username} /var/www/html/${websitename}/public_html
         sudo touch /var/www/html/${websitename}/public_html/index.html
-
+        sudo chmod 777 /var/www/html/${websitename}/public_html/index.html
         echo "<html>
         <head>
         <title>www.${websitename}</title>
@@ -78,8 +78,8 @@ function addvirtualhost
         </html>" >> /var/www/html/${websitename}/public_html/index.html
         cat /var/www/html/${websitename}/public_html/index.html;
         sudo touch /etc/apache2/sites-available/${websitename}.conf
-
-      echo "
+        sudo chmod 777 /etc/apache2/sites-available/${websitename}.conf
+       echo "
     <VirtualHost *:80>
         ServerAdmin webmaster@${websitename}
         ServerName ${websitename}
@@ -95,7 +95,7 @@ function addvirtualhost
     systemctl reload apache2
     sudo systemctl restart apache2
     echo "127.0.0.1	${websitename}"
-
+    sudo chmod 777 /etc/hosts
     echo "127.0.0.1	${websitename}"  >> /etc/hosts
     sudo systemctl restart apache2
     #echo "Open up your web browser and point it to http://Websitename";
@@ -111,14 +111,14 @@ function deletevirtualhost
     #expr to make arthimatic operation and increase 
     read -p "Enter name of virtualhost you want to delete : " deleteVirtualHost
     NUM_LINE=1
-
+    sudo chmod 777 /etc/hosts
     while read -r line;do
     if [ "$line" == "127.0.0.1	${deleteVirtualHost}" ]; then
     REQ_LINE=${NUM_LINE}
     fi
     NUM_LINE=$(expr ${NUM_LINE} + 1)
     done <"/etc/hosts"
-
+    sudo chmod 777 /etc/hosts
     sudo sed -i "${REQ_LINE}d" /etc/hosts
     sudo rm /etc/apache2/sites-available/${deleteVirtualHost}.conf
     sudo rm -Rf /var/www/${deleteVirtualHost}
@@ -173,7 +173,7 @@ function  enableauthvirtualhost
     ###########################################################3
     #.htaccess for every website to make authentication
     sudo touch /var/www/html/${authVirtualHost}/public_html/.htaccess
-
+    sudo chmod 777 /var/www/html/${authVirtualHost}/public_html/.htaccess
     echo "
      AuthType Basic
      AuthName 'Restricted Content'

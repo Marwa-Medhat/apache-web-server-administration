@@ -1,21 +1,20 @@
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sat 2021-03-13 03:09:30 EET; 22min ago
+     Active: active (running) since Sat 2021-03-13 14:21:04 EET; 8s ago
        Docs: https://httpd.apache.org/docs/2.4/
-    Process: 90061 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
-   Main PID: 90065 (apache2)
-      Tasks: 7 (limit: 19034)
-     Memory: 14.9M
+    Process: 11557 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 11561 (apache2)
+      Tasks: 6 (limit: 19034)
+     Memory: 13.8M
      CGroup: /system.slice/apache2.service
-             ├─90065 /usr/sbin/apache2 -k start
-             ├─90066 /usr/sbin/apache2 -k start
-             ├─90067 /usr/sbin/apache2 -k start
-             ├─90068 /usr/sbin/apache2 -k start
-             ├─90069 /usr/sbin/apache2 -k start
-             ├─90070 /usr/sbin/apache2 -k start
-             └─90116 /usr/sbin/apache2 -k start
+             ├─11561 /usr/sbin/apache2 -k start
+             ├─11562 /usr/sbin/apache2 -k start
+             ├─11563 /usr/sbin/apache2 -k start
+             ├─11564 /usr/sbin/apache2 -k start
+             ├─11565 /usr/sbin/apache2 -k start
+             └─11566 /usr/sbin/apache2 -k start
 
-مار 13 03:09:30 origenal systemd[1]: Starting The Apache HTTP Server...
-مار 13 03:09:30 origenal apachectl[90064]: [Sat Mar 13 03:09:30.308807 2021] [alias:warn] [pid 90064] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
-مار 13 03:09:30 origenal apachectl[90064]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
-مار 13 03:09:30 origenal systemd[1]: Started The Apache HTTP Server.
+مار 13 14:21:03 origenal systemd[1]: Starting The Apache HTTP Server...
+مار 13 14:21:04 origenal apachectl[11560]: [Sat Mar 13 14:21:04.026961 2021] [alias:warn] [pid 11560] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
+مار 13 14:21:04 origenal apachectl[11560]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+مار 13 14:21:04 origenal systemd[1]: Started The Apache HTTP Server.

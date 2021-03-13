@@ -22,7 +22,6 @@ There is Menu write number of operation you want
 	num 12 Quit
 				
 If You write any number not included from 1 to 12 will appear on screen  not valid    
-
 To run project you need to 
 1-chmod +x main-option.sh
 2-./main-option.sh

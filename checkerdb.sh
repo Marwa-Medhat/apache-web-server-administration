@@ -1,5 +1,11 @@
  #!/bin/bash
-
+##this script to have fns  
+	# "1-checkApache"
+	# "2-check_if_virtualhost_exist_or_not"
+	# "3- check_if_authorized_or_not"
+	# "4-check_if_enable_authorized_or_not"
+	# "5-check_if_directory_Exist_or_not"
+	# "6-check_if_passwd_already_exist"
 ##############################################3
 function checkApache {
     
@@ -113,7 +119,6 @@ function check_if_passwd_already_exist
       return $[flagUserExistBefore]
 
 }
-
 
 
 
