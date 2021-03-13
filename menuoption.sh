@@ -12,6 +12,7 @@ function displayMenu {
          "Install Apache")
 				echo '1';
 				#install apache web server
+				
 				installapache
 				displayMenu
              ;;
@@ -24,14 +25,34 @@ function displayMenu {
  	"list all virtual hosts")
         #list all virtual hosts
 			echo '3'
-			listallvirtualhosts
-			displayMenu	
+			# listallvirtualhosts
+			checkApache
+	        ApacheEXIST=${?} ##already installed
+            if [ ${ApacheEXIST} == 1 ]
+            then
+			listallvirtualhosts	
+			else
+				displayMenu									
+            fi
 	     	;;
  	"add virtual host")
- 		echo '4';
+ 		echo '4'
+        #  check_if_virtualhost_exist_or_not
+		#  check_if_virtualhost_exist_or_not 
+		#   check_if_virtualhost_exist_or_not
             #add virtual host
-			addvirtualhost
-			displayMenu
+			# addvirtualhost
+
+		#4 --> add -->checker exist or not-->lw msh mwgod --> call add --> lw  mwgod yktb exist y3rd Menu tani 
+			check_if_virtualhost_exist_or_not  
+            EXISTLOCALHOST=${?}
+			 if [ ${EXISTLOCALHOST} == 0 ]
+             then
+				addvirtualhost
+			else
+				displayMenu									
+            fi
+
       	;;
      	"delete virtual host")
          echo '5';
@@ -39,7 +60,6 @@ function displayMenu {
 			deletevirtualhost
 			displayMenu
              ;;
-
          "disable virtual host")
              echo '6';
 		 disablevirtualhost

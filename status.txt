@@ -1,0 +1,20 @@
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2021-03-12 23:44:28 EET; 2h 9min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 53488 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 53492 (apache2)
+      Tasks: 6 (limit: 19034)
+     Memory: 13.6M
+     CGroup: /system.slice/apache2.service
+             ├─53492 /usr/sbin/apache2 -k start
+             ├─53493 /usr/sbin/apache2 -k start
+             ├─53494 /usr/sbin/apache2 -k start
+             ├─53495 /usr/sbin/apache2 -k start
+             ├─53496 /usr/sbin/apache2 -k start
+             └─53497 /usr/sbin/apache2 -k start
+
+مار 12 23:44:28 origenal systemd[1]: Starting The Apache HTTP Server...
+مار 12 23:44:28 origenal apachectl[53491]: [Fri Mar 12 23:44:28.758586 2021] [alias:warn] [pid 53491] AH00671: The Alias directive in /etc/phpmyadmin/apache.conf at line 3 will probably never match because it overlaps an earlier Alias.
+مار 12 23:44:28 origenal apachectl[53491]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+مار 12 23:44:28 origenal systemd[1]: Started The Apache HTTP Server.
